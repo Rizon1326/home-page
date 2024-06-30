@@ -30,24 +30,57 @@ body {
   text-align: center;
 }
 
-.falling-text {
-  font-size: 4rem; /* Increased font size */
+.falling-text,
+.falling-subtext {
+  font-size: 4rem; /* Increased font size for falling-text */
   color: #00f7ff; /* Suitable color */
-  animation: fall 2s ease-out forwards;
+  animation: fall 2s ease-out forwards, light-effect 3s infinite;
   opacity: 0;
+  background: linear-gradient(90deg, rgba(204, 223, 227, 0.823), rgba(221, 164, 232, 0.856), rgba(194, 250, 233, 0.864));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
 }
 
 .falling-subtext {
   font-size: 2rem; /* Increased font size */
-  color: #00f7ff; /* Suitable color */
-  animation: fall 3s ease-out forwards;
-  opacity: 0;
   animation-delay: 1s;
 }
 
 .get-started-button {
-  @apply bg-blue-500 text-white py-2 px-4 rounded;
+  @apply relative bg-blue-500 text-white py-2 px-4 rounded;
   transition: background-color 0.3s ease;
+  border: 2px solid transparent;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.get-started-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(60deg, transparent, rgba(134, 243, 238, 0.878), transparent);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  z-index: -1;
+}
+
+.get-started-button:hover::before {
+  opacity: 1;
+  animation: glow 1.5s linear infinite;
+}
+
+@keyframes glow {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .get-started-button:hover {
@@ -62,5 +95,17 @@ body {
   100% {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes light-effect {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
   }
 }
