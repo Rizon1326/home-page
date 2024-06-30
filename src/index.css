@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply m-0 p-0 box-border;
+  @apply m-0 p-0 box-border overflow-hidden;
 }
 
 .app-container {
@@ -27,4 +27,29 @@ body {
 .content {
   position: relative;
   z-index: 1;
+  text-align: center;
+  animation: drop 2s ease-out;
+  color: #23d2d2; /* Gold color */
+  font-size: 3rem; /* Increase font size */
+}
+
+.content h1 {
+  margin-bottom: 0.5rem;
+  font-size: 4rem; /* Larger font size for the main title */
+}
+
+.content p {
+  font-size: 2rem; /* Smaller font size for the subtitle */
+}
+
+/* Keyframes for the drop animation */
+@keyframes drop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
