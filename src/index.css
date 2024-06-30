@@ -45,6 +45,15 @@ body {
   animation-delay: 1s;
 }
 
+.get-started-button {
+  @apply bg-blue-500 text-white py-2 px-4 rounded;
+  transition: background-color 0.3s ease;
+}
+
+.get-started-button:hover {
+  @apply bg-blue-700;
+}
+
 @keyframes fall {
   0% {
     transform: translateY(-100%);
